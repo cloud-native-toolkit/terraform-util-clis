@@ -4,12 +4,13 @@ SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 
 DEST_DIR="$1"
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+OSTYPE=$(uname)
+if [[ "$OSTYPE" == "Linux" ]]; then
   TYPE=$(cat /etc/os-release | grep -E "^ID=" | sed "s/ID=//g")
   if [[ "${TYPE}" != "alpine" ]]; then
     TYPE="linux"
   fi
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+elif [[ "$OSTYPE" == "Darwin" ]]; then
   TYPE="macos"
 else
   echo "OS not supported"

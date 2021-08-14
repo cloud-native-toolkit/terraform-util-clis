@@ -11,7 +11,7 @@ BIN_DIR=$(cd "${DEST_DIR}"; pwd -P)
 COMMAND=$(command -v "${CLI_NAME}")
 
 if [[ -n "${COMMAND}" ]]; then
-  echo "${COMMAND} already installed. Linking to ${BIN_DIR}..."
+  echo "${CLI_NAME} already installed. Linking to ${BIN_DIR}"
   ln -s "${COMMAND}" "${BIN_DIR}/${CLI_NAME}"
   COMMAND="${BIN_DIR}/${CLI_NAME}"
 else

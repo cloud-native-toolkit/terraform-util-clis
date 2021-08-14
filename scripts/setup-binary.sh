@@ -24,7 +24,7 @@ else
     echo "${CLI_NAME} missing. Installing..."
     touch "${BIN_DIR}/${CLI_NAME}.tmp"
 
-    curl -Lo "${BIN_DIR}/${CLI_NAME}.tmp" "${CLI_URL}"
+    curl -sLo "${BIN_DIR}/${CLI_NAME}.tmp" "${CLI_URL}"
 
     chmod +x "${BIN_DIR}/${CLI_NAME}.tmp"
     mv "${BIN_DIR}/${CLI_NAME}.tmp" "${BIN_DIR}/${CLI_NAME}"

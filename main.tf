@@ -25,6 +25,6 @@ resource null_resource setup-yq3 {
 
 resource null_resource setup-yq4 {
   provisioner "local-exec" {
-    command = "${path.module}/scripts/setup-yq3.sh '${local.bin_dir}'"
+    command = "${path.module}/scripts/setup-yq4.sh '${local.bin_dir}'"
   }
 }

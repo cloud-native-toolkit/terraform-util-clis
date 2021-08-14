@@ -8,6 +8,11 @@ mkdir -p "${DEST_DIR}"
 
 BIN_DIR=$(cd "${DEST_DIR}"; pwd -P)
 
+if command -v "${BIN_DIR}/${CLI_NAME}" 1> /dev/null 2> /dev/null; then
+  echo "${CLI_NAME} already installed in ${BIN_DIR}..."
+  exit 0
+fi
+
 COMMAND=$(command -v "${CLI_NAME}")
 
 if [[ -n "${COMMAND}" ]]; then

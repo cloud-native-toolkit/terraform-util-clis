@@ -53,3 +53,8 @@ if ! "${BIN_DIR}/glab" version; then
   echo "glab cli not configured properly"
   exit 1
 fi
+
+if ! "${BIN_DIR}/kubeseal" --version; then
+  echo "kubeseal cli not configured properly"
+  exit 1
+fi

@@ -66,7 +66,7 @@ jobs:
           distDir: ${DIST_DIR}
 
       - name: Print metadata
-        run: cat ./output/index.yaml
+        run: cat ${DIST_DIR}/index.yaml
 
   release:
     needs: [verify, verifyMetadata]

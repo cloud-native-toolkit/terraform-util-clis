@@ -63,7 +63,7 @@ jobs:
         with:
           strict: true
           validate: true
-          distDir: ${DIST_DIR}
+          distDir: ${{ env.DIST_DIR }}
 
       - name: Print metadata
         run: cat ${DIST_DIR}/index.yaml

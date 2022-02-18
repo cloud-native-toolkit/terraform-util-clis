@@ -36,10 +36,10 @@ else
     echo "${CLI_NAME} missing. Installing..."
     touch "${TMP_FILE}"
 
+    mkdir -p "${BIN_DIR}/../lib/azure"
+
     INSTALL_DIR=$(cd "${BIN_DIR}/../lib/azure"; pwd -P)
     MODIFY_PROFILE="n"
-
-    mkdir -P "${INSTALL_DIR}"
 
     export INSTALL_DIR BIN_DIR MODIFY_PROFILE
 

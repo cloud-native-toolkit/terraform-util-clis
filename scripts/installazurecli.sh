@@ -10,8 +10,6 @@
 #
 SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 
-_TTY=/dev/tty
-
 install_script="${SCRIPT_DIR}/azure_cli_install.py"
 
 python_cmd=python3
@@ -29,4 +27,4 @@ fi
 
 chmod 775 $install_script
 echo "Running install script."
-$python_cmd $install_script < $_TTY
+$python_cmd $install_script

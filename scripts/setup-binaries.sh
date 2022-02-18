@@ -44,7 +44,7 @@ if [[ "${CLIS}" =~ rosa ]]; then
   "${SCRIPT_DIR}/setup-rosa.sh" "${DEST_DIR}" "${TYPE}" || exit 1
 fi
 
-if [[ "${CLIS}" =~ ^gh ]]; then
+if [[ "${CLIS}" =~ gh ]]; then
   "${SCRIPT_DIR}/setup-gh.sh" "${DEST_DIR}" "${TYPE}" || exit 1
 fi
 
@@ -56,6 +56,9 @@ if [[ "${CLIS}" =~ kubeseal ]]; then
   "${SCRIPT_DIR}/setup-kubeseal.sh" "${DEST_DIR}" "${TYPE}" || exit 1
 fi
 
-if [[ "${CLIS}" =~ ^az ]]; then
+if [[ "${CLIS}" =~ az ]]; then
+  echo "Setting up azure"
   "${SCRIPT_DIR}/setup-azure.sh" "${DEST_DIR}" "${TYPE}" || exit 1
+else
+  echo "Skipping azure"
 fi

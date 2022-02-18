@@ -7,5 +7,6 @@ variable "bin_dir" {
 variable "clis" {
   type        = list(string)
   description = "The list of clis that should be made available in the bin directory. Supported values are yq, jq, igc, helm, argocd, rosa, gh, glab, and kubeseal. (If not provided the list will default to yq, jq, and igc)"
+  # @enum([jq, yq, igc, helm, argocd, rosa, gh, glib, kubseal, azure])
   default     = ["yq", "jq", "igc"]
 }

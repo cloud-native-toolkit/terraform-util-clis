@@ -73,3 +73,10 @@ if ! "${BIN_DIR}/kubeseal" --version; then
 else
   echo "kubeseal cli configured properly"
 fi
+
+if ! "${BIN_DIR}/az" version; then
+  echo "azure cli not configured properly"
+  exit 1
+else
+  echo "azure cli configured properly"
+fi

@@ -28,4 +28,4 @@ if [[ "${TYPE}" == "alpine" ]]; then
   chmod +x "${DEST_DIR}/oc"
 fi
 
-ln -s "${DEST_DIR}/oc" "${DEST_DIR}/kubectl"
+ln -Fs "${DEST_DIR}/oc" "${DEST_DIR}/kubectl"

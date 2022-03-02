@@ -59,3 +59,7 @@ fi
 if [[ "${CLIS}" =~ oc ]]; then
   "${SCRIPT_DIR}/setup-oc.sh" "${DEST_DIR}" "${TYPE}" || exit 1
 fi
+
+if [[ "${CLIS}" =~ kubectl ]]; then
+  "${SCRIPT_DIR}/setup-kubectl.sh" "${DEST_DIR}" "${TYPE}" || exit 1
+fi

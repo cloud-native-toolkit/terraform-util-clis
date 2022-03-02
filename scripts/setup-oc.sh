@@ -16,8 +16,6 @@ fi
 
 URL="https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-${FILETYPE}.tar.gz"
 
-echo "Getting oc from ${URL}"
-
 CMD_NAME="oc"
 if [[ "${TYPE}" == "alpine" ]]; then
   CMD_NAME="oc-bin"

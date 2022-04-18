@@ -7,7 +7,7 @@ export CLI_NAME="$2"
 CLI_URL="$3"
 
 function debug() {
-  echo "${SCRIPT_DIR}: ${CLI_NAME} $1" >> clis-debug.log
+  echo "${SCRIPT_DIR}: (${CLI_NAME}) $1" >> clis-debug.log
 }
 
 mkdir -p "${DEST_DIR}"

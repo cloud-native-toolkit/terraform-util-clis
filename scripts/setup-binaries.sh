@@ -5,10 +5,10 @@ SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 INPUT=$(tee)
 
 function debug() {
-  echo "${SCRIPT_DIR}: $1" >> clis-debug.log
+  echo "${SCRIPT_DIR}: (all) $1" >> clis-debug.log
 }
 
-debug "${INPUT}"
+debug "Input: ${INPUT}"
 
 DEST_DIR=$(echo "${INPUT}" | grep bin_dir | sed -E 's/.*"bin_dir": ?"([^"]*)".*/\1/g')
 CLIS=$(echo "${INPUT}" | grep clis | sed -E 's/.*"clis": ?"([^"]*)".*/\1/g')

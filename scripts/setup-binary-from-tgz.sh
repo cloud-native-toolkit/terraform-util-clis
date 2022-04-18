@@ -41,6 +41,11 @@ else
 
     curl -sLo "${TAR_FILE}" "${CLI_URL}"
 
+    if ! tar tzf "${TAR_FILE}" 1> /dev/null 2> /dev/null; then
+      echo "Tar file is corrupted: ${TAR_FILE} from ${CLI_URL}" >&2
+      exit 1
+    fi
+
     if [[ ! -f "${BIN_DIR}/${CLI_NAME}" ]]; then
       debug "Unpacking ${CLI_PATH} from tar file ${TAR_FILE}"
       tar xzf "${TAR_FILE}" "${CLI_PATH}"

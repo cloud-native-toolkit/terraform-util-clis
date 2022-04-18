@@ -9,6 +9,8 @@ if [[ ! -f clis-debug.log ]]; then
   exit 1
 fi
 
+cat clis-debug.log
+
 if [[ ! -f "${BIN_DIR}/jq" ]]; then
   echo "jq not found" >&2
   exit 1

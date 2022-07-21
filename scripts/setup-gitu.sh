@@ -21,4 +21,9 @@ if [[ -z "${RELEASE}" ]]; then
   exit 1
 fi
 
+# Work around different suffix for gitu release
+if [[ "${ARCH}" == "amd64" ]]; then
+  ARCH="x64"
+fi
+
 "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/git-client/releases/download/${RELEASE}/gitu-${TYPE}-${ARCH}" --version

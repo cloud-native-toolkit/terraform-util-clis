@@ -4,7 +4,7 @@ SCRIPT_DIR=$(cd $(dirname "$0"); pwd -P)
 
 DEST_DIR="$1"
 TYPE="$2"
-ARCH="x64"
+ARCH="$3"
 
 CLI_NAME="gitu"
 

@@ -20,7 +20,7 @@ fi
 
 debug "Determining release"
 
-RELEASE=$(curl -sI "https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest" | grep "location:" | sed -E "s~.*/tag/~~g")
+RELEASE=$(curl -sI "https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest" | grep "location:" | sed -E "s~.*/tag/([a-z0-9.-]+).*~\1~g")
 
 if [[ -z "${RELEASE}" ]]; then
   echo "ibmcloud release not found" >&2

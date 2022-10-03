@@ -15,5 +15,8 @@ tags:
     - kubectl
 versions:
 - platforms: []
+  providers:
+    - name: clis
+      source: "cloud-native-toolkit/clis"
   dependencies: []
   variables: []

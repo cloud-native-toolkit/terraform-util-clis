@@ -4,13 +4,6 @@ BIN_DIR=$(cat .bin_dir)
 
 ls -l "${BIN_DIR}"
 
-if [[ ! -f clis-debug.log ]]; then
-  echo "debug log does not exist" >&2
-  exit 1
-fi
-
-cat clis-debug.log
-
 if ! "${BIN_DIR}/jq" --version; then
   echo "jq not found" >&2
   exit 1

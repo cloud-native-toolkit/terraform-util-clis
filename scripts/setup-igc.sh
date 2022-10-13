@@ -20,7 +20,7 @@ if [[ -z "${RELEASE}" ]]; then
   exit 1
 fi
 
-if [[ "${ARCH}" == "amd64"]]; then
+if [[ "${ARCH}" == "amd64" ]]; then
   "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}" --version
 else
   "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}-${ARCH}" --version

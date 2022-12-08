@@ -35,7 +35,7 @@ jobs:
         id: setup
         run: |
           mkdir -p /tmp/bin
-          curl -Lso /tmp/bin/igc https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/v1.39.2/igc-linux
+          curl -Lso /tmp/bin/igc https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/v1.39.2/igc-alpine
           chmod +x /tmp/bin/igc
           
           export PATH="/tmp/bin:$PATH"
@@ -46,7 +46,7 @@ jobs:
           echo "igc version:"
           igc --version
           
-          echo "path=$PATH" >> $GITHUB_OUTPUT
+          echo "mypath=$PATH" >> $GITHUB_OUTPUT
 
       - name: Verify deploy on ${{ matrix.platform }}
         uses: cloud-native-toolkit/action-module-verify-deploy@main
@@ -56,7 +56,7 @@ jobs:
         env:
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
-          PATH: ${{ steps.setup.outputs.path }}
+          PATH: ${{ steps.setup.outputs.mypath }}
 
       - name: Verify destroy on ${{ matrix.platform }}
         uses: cloud-native-toolkit/action-module-verify-destroy@main
@@ -66,4 +66,4 @@ jobs:
         env:
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
-          PATH: ${{ steps.setup.outputs.path }}
+          PATH: ${{ steps.setup.outputs.mypath }}

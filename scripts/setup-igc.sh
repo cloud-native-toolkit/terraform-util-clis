@@ -7,9 +7,11 @@ TYPE="$2"
 ARCH="$3"
 CLI_NAME="igc"
 
+MIN_VERSION="1.42"
+
 export PATH="${DEST_DIR}:${PATH}"
 
-if "${SCRIPT_DIR}/setup-existing.sh" "${DEST_DIR}" "${CLI_NAME}"; then
+if "${SCRIPT_DIR}/setup-existing.sh" "${DEST_DIR}" "${CLI_NAME}" "${MIN_VERSION}"; then
   exit 0
 fi
 
@@ -21,7 +23,7 @@ if [[ -z "${RELEASE}" ]]; then
 fi
 
 if [[ "${ARCH}" == "amd64" ]]; then
-  "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}" --version
+  "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}" --version "${MIN_VERSION}"
 else
-  "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}-${ARCH}" --version
+  "${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/${RELEASE}/igc-${TYPE}-${ARCH}" --version "${MIN_VERSION}"
 fi

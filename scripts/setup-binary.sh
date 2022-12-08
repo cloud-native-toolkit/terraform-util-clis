@@ -25,10 +25,27 @@ if command -v "${BIN_DIR}/${CLI_NAME}" 1> /dev/null 2> /dev/null; then
   exit 0
 fi
 
-if command -v "${CLI_NAME}" 1> /dev/null 2> /dev/null && [[ -n "${VERSION_MATCH}" ]] && [[ $("${CLI_NAME}" --version) =~ ${VERSION_MATCH} ]]; then
+if command -v "${CLI_NAME}" 1> /dev/null 2> /dev/null; then
   COMMAND=$(command -v "${CLI_NAME}")
-else
-  COMMAND=$(command -v "${CLI_NAME}")
+fi
+
+if [[ -n "${COMMAND}" ]] && [[ -n "${VERSION_MATCH}" ]]; then
+  VERSION=$("${COMMAND}" --version | sed -E 's/[^0-9]*([0-9]+[.][0-9]+[.]?[0-9]*).*/\1/g')
+
+  MAJOR=$(echo "${VERSION}" | sed -E 's/([0-9]+)[.]([0-9]+).*/\1/g')
+  MINOR=$(echo "${VERSION}" | sed -E 's/([0-9]+)[.]([0-9]+).*/\2/g')
+
+  MATCH_MAJOR=$(echo "${VERSION_MATCH}" | sed -E 's/([0-9]+)[.]([0-9]+).*/\1/g')
+  MATCH_MINOR=$(echo "${VERSION_MATCH}" | sed -E 's/([0-9]+)[.]([0-9]+).*/\2/g')
+
+  if [[ "${MAJOR}" -lt "${MATCH_MAJOR}" ]]; then
+    debug "Old version of cli found in path: ${VERSION}"
+  elif [[ "${MAJOR}" -eq "${MATCH_MAJOR}" ]] && [[ "${MINOR}" -lt "${MATCH_MINOR}" ]]; then
+    debug "Old version of cli found in path: ${VERSION}"
+    COMMAND=""
+  else
+    debug "Recent version of cli found in path: ${VERSION}"
+  fi
 fi
 
 if [[ -n "${COMMAND}" ]]; then

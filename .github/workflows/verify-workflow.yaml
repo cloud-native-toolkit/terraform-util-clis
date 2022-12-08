@@ -15,7 +15,9 @@ jobs:
   verify:
     if: ${{ !contains( github.event.pull_request.labels.*.name, 'skip ci' ) }}
     runs-on: ubuntu-latest
-    container: quay.io/cloudnativetoolkit/terraform:v1.1
+    container:
+      image: quay.io/cloudnativetoolkit/terraform:v1.1
+      options: --privileged
 
     strategy:
       matrix:
@@ -30,6 +32,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Download backlevel igc
+        id: setup
+        run: |
+          mkdir -p /tmp/bin
+          curl -Lso /tmp/bin/igc https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/v1.39.2/igc-alpine
+          chmod +x /tmp/bin/igc
+          
+          echo "PATH: $PATH"
+          
+          sudo mv /tmp/bin/igc /usr/local/bin
+          
+          echo -n "igc path: "
+          command -v igc
+          echo ""
+          echo "igc version:"
+          igc --version
 
       - name: Verify deploy on ${{ matrix.platform }}
         uses: cloud-native-toolkit/action-module-verify-deploy@main

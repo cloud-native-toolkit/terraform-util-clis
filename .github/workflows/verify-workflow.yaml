@@ -15,7 +15,9 @@ jobs:
   verify:
     if: ${{ !contains( github.event.pull_request.labels.*.name, 'skip ci' ) }}
     runs-on: ubuntu-latest
-    container: quay.io/cloudnativetoolkit/terraform:v1.1
+    container:
+      image: quay.io/cloudnativetoolkit/terraform:v1.1
+      options: --privileged
 
     strategy:
       matrix:
@@ -38,15 +40,15 @@ jobs:
           curl -Lso /tmp/bin/igc https://github.com/cloud-native-toolkit/ibm-garage-cloud-cli/releases/download/v1.39.2/igc-alpine
           chmod +x /tmp/bin/igc
           
-          export PATH="/tmp/bin:$PATH"
+          echo "PATH: $PATH"
+          
+          sudo mv /tmp/bin/igc /usr/local/bin
           
           echo -n "igc path: "
           command -v igc
           echo ""
           echo "igc version:"
           igc --version
-          
-          echo "mypath=$PATH" >> $GITHUB_OUTPUT
 
       - name: Verify deploy on ${{ matrix.platform }}
         uses: cloud-native-toolkit/action-module-verify-deploy@main
@@ -56,7 +58,6 @@ jobs:
         env:
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
-          PATH: ${{ steps.setup.outputs.mypath }}
 
       - name: Verify destroy on ${{ matrix.platform }}
         uses: cloud-native-toolkit/action-module-verify-destroy@main
@@ -66,4 +67,3 @@ jobs:
         env:
           TF_VAR_ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
           IBMCLOUD_API_KEY: ${{ secrets.IBMCLOUD_API_KEY }}
-          PATH: ${{ steps.setup.outputs.mypath }}

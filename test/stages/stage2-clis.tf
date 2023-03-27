@@ -1,8 +1,28 @@
 module "clis" {
   source = "./module"
 
-  clis = ["yq", "jq", "igc", "helm", "argocd", "rosa", "gh", "glab", "kubeseal", "oc", "kubectl", "ibmcloud", "ibmcloud-is", "ibmcloud-ob", "ibmcloud-ks", "ibmcloud-cr", "kustomize", "gitu", "openshift-install-4.10.15"]
-  
+  clis = [
+    "yq",
+    "jq",
+    "igc",
+    "helm",
+    "argocd",
+    "rosa",
+    "gh",
+    "glab",
+    "kubeseal",
+    "oc",
+    "kubectl",
+    "ibmcloud",
+    "ibmcloud-is",
+    "ibmcloud-ob",
+    "ibmcloud-ks",
+    "ibmcloud-cr",
+    "kustomize",
+    "gitu",
+    "openshift-install-4.10.15",
+    "operator-sdk"
+  ]
 }
 
 resource "null_resource" "write_path" {

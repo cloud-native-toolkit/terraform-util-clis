@@ -25,4 +25,4 @@ FILENAME="operator-sdk_${OS}_${ARCH}"
 
 URL="https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE}/${FILENAME}"
 
-"${SCRIPT_DIR}/setup-binary-from-tgz.sh" "${DEST_DIR}" "${CLI_NAME}" "${URL}" operator-sdk version
+"${SCRIPT_DIR}/setup-binary.sh" "${DEST_DIR}" "${CLI_NAME}" "${URL}" version

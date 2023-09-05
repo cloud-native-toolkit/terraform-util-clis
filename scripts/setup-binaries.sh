@@ -50,7 +50,12 @@ mkdir -p "${DEST_DIR}" || exit 1
 "${SCRIPT_DIR}/setup-oc.sh" "${DEST_DIR}" "${TYPE}" "${ARCH}" || exit 1
 
 if [[ "${CLIS}" =~ yq ]]; then
-  "${SCRIPT_DIR}/setup-yq3.sh" "${DEST_DIR}" "${TYPE}" "${ARCH}" || exit 1
+  if [[ "${TYPE}" == "macos" ]] && [[ "${ARCH}" == "arm64" ]]; then
+    # there is no Mac arm64 for yq3, use the amd64 instead
+    "${SCRIPT_DIR}/setup-yq3.sh" "${DEST_DIR}" "${TYPE}" amd64 || exit 1
+  else
+    "${SCRIPT_DIR}/setup-yq3.sh" "${DEST_DIR}" "${TYPE}" "${ARCH}" || exit 1
+  fi
   "${SCRIPT_DIR}/setup-yq4.sh" "${DEST_DIR}" "${TYPE}" "${ARCH}" || exit 1
 fi
 

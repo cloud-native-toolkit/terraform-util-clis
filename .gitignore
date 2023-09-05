@@ -9,3 +9,6 @@ test/stages/module
 terraform.tfvars
 aws.code-workspace
 .vscode
+bin2
+.bin_dir
+clis-debug.log
